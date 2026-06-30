@@ -1,0 +1,15 @@
+# MATLAB and Simulink generated files
+slprj/
+work/
+*.slxc
+*.mex*
+*.asv
+*.autosave
+
+# Large local simulator assets are expected to be supplied outside git.
+localFolder/
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
