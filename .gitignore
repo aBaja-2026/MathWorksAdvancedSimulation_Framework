@@ -1,6 +1,7 @@
 # MATLAB and Simulink generated files
 slprj/
 work/
+analysis_outputs/
 *.slxc
 *.mex*
 *.asv

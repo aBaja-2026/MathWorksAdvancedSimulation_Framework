@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Info File="openControlVehicleOnStartup.m" GroupUUID="default" Icon="" Name="openControlVehicleOnStartup" Type="StartUp" Visible="0">
+    <Extension Name="StartUpPrev" Value="855bbe43-f173-4f40-a4e3-e59fca51e4ea"/>
+</Info>

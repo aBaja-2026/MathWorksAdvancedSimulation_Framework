@@ -2,6 +2,30 @@
 
 This repository contains the Simulink model used for the aBAJA 2026 advanced simulation workflow.
 
+## Expected Workflow
+
+1. Open MATLAB.
+2. Open the project:
+
+   ```matlab
+   openProject("MathWorksAdvancedSimulation_Framework.prj")
+   ```
+
+3. Wait for project startup to finish. The startup scripts download missing local assets and open `ControlVehicle.slx`.
+4. The model loads the previously saved vehicle spawn by default.
+5. To create a new spawn point, click the `Create new spawn point` annotation in `ControlVehicle.slx`.
+6. A dialog shows `Starting creation of spawn point`.
+7. The RRHD road-point selector runs quietly, updates the `Simulation 3D Physics Vehicle` block, and saves the model.
+8. A dialog shows `Finished spawn point generation`.
+9. Run the simulation from Simulink.
+
+The spawn button writes these block parameters automatically:
+
+- `InitialPos`
+- `InitialRot`
+
+`InitialRot` is written in radians, matching the `Simulation 3D Physics Vehicle` block.
+
 ## Model
 
 - `ControlVehicle.slx`
@@ -51,23 +75,49 @@ Default paths used by the model after setup:
 
 If these files are in a different location, update the `Simulation 3D Scene Configuration` block in `ControlVehicle.slx`.
 
-## How to Run
+## Spawn Point Generation
 
-1. Open MATLAB.
-2. Open the project:
+The spawn workflow uses `localFolder\IndianCityBlock.rrhd` and the scripts in `scripts`.
 
-   ```matlab
-   openProject("MathWorksAdvancedSimulation_Framework.prj")
-   ```
+The one-click Simulink button calls:
 
-3. Wait for project setup to finish. It skips the download if `localFolder` already contains the required files.
-4. Open the model:
+```matlab
+lastRRHDSpawnUpdate = updateControlVehicleSpawnFromRRHD(500, [], [], modelName, opts);
+```
 
-   ```matlab
-   open_system("ControlVehicle.slx")
-   ```
+This selects a start point and a point 500 m away on the RRHD lane network, converts the RRHD/RoadRunner pose to the Simulation 3D coordinate system, and updates the vehicle block.
 
-5. Run the model from Simulink.
+The coordinate conversion applied to the initial vehicle pose is:
+
+- position: `[x, y, z] -> [x, -y, z]`
+- yaw: `wrapTo2Pi(3*pi/2 - deg2rad(rrhdYawDeg))`
+
+The latest spawn result is also assigned in the MATLAB base workspace as `lastRRHDSpawnUpdate`.
+
+For deterministic testing from MATLAB:
+
+```matlab
+opts = struct( ...
+    "Quiet", true, ...
+    "ShowDialogs", false, ...
+    "CreatePlot", false, ...
+    "SaveResult", false, ...
+    "Fast", true, ...
+    "VerticalStartOnly", true, ...
+    "MapEdgeMargin", 50, ...
+    "StartStationRandomWindow", 60, ...
+    "StartStationAttempts", 12);
+
+lastRRHDSpawnUpdate = updateControlVehicleSpawnFromRRHD(500, [], [], "ControlVehicle", opts);
+```
+
+## Validation
+
+Run the coordinate-conversion check with:
+
+```matlab
+testConvertRRHDPoseToSim3DInitialPose
+```
 
 ## What Teams Need To Do
 
