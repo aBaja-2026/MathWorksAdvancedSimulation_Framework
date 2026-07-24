@@ -1,0 +1,8 @@
+ProjectorType: TransverseMercator
+
+VerticalDatum: WGS84
+
+MapOrigin:
+  Latitude: 0.000000
+  Longitude: 0.000000
+  Altitude: 0

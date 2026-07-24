@@ -1,0 +1,56 @@
+{
+  "Metrics": {
+    "TaskComplete": false,
+    "CompletionIndex": null,
+    "CompletionTime_s": null,
+    "OverspeedDuration_s": 18.300000000000004,
+    "CollisionEventCount": 0,
+    "IndicatorViolationCount": 0,
+    "LateralDeviationRMSE_m": 6.8361277813553256,
+    "RedSignalViolationCount": null,
+    "YellowLineViolationCount": null,
+    "MinimumObstacleDistance_m": null
+  },
+  "Scores": {
+    "TaskCompletion": 0,
+    "NavigationTime": 0,
+    "CollisionPenalty": -0,
+    "SpeedLimitCompliance": 0,
+    "RedSignalCompliance": null,
+    "LaneMarkingCompliance": null,
+    "IndicatorCompliance": 5,
+    "MinimumObstacleDistance": null,
+    "LaneCenteringAccuracy": 0
+  },
+  "TotalKnownPositiveScore": 5,
+  "TotalBeforeCollisionPenalty": 5,
+  "TotalScore": 5,
+  "KnownMaxPoints": 55,
+  "UnknownMetrics": [
+    "LaneMarkingCompliance",
+    "MinimumObstacleDistance"
+  ],
+  "IgnoredMetrics": "RedSignalCompliance",
+  "Validation": {
+    "TelemetrySchemaValid": true,
+    "EventsSchemaValid": true,
+    "TimeMonotonic": true,
+    "Minimum10Hz": true,
+    "Issues": []
+  },
+  "MaxPoints": {
+    "TaskCompletion": 20,
+    "NavigationTime": 15,
+    "SpeedLimitCompliance": 10,
+    "RedSignalCompliance": 10,
+    "LaneMarkingCompliance": 10,
+    "IndicatorCompliance": 5,
+    "MinimumObstacleDistance": 5,
+    "LaneCenteringAccuracy": 5
+  },
+  "OutputFiles": {
+    "Telemetry": "D:\\aBaja\\aBAJA_2026\\MathWorksAdvancedSimulation_Framework\\results\\logs\\telemetry_log.csv",
+    "Events": "D:\\aBaja\\aBAJA_2026\\MathWorksAdvancedSimulation_Framework\\results\\logs\\events_log.json",
+    "Score": "D:\\aBaja\\aBAJA_2026\\MathWorksAdvancedSimulation_Framework\\results\\logs\\score_summary.json"
+  }
+}
